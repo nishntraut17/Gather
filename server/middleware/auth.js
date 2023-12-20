@@ -1,18 +1,24 @@
 const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
-    console.log("yaha tak working");
-    const authHeader = req.headers.authorization;
+    try {
+        console.log("yaha tak working");
+        const authHeader = req.headers.authorization;
 
-    if (!authHeader?.startsWith("Bearer ")) return res.sendStatus(401).send(error);
+        if (!authHeader?.startsWith("Bearer ")) return res.send(error);
 
-    const token = authHeader.split(" ")[1];
+        const token = authHeader.split(" ")[1];
+        console.log(token);
 
-    jwt.verify(token, process.env.JWT_TOKEN, (err, decoded) => {
-        if (err) return res.sendStatus(403);
-        req.user = decoded.userId;
-        next();
-    });
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) return res.send(err);
+            req.user = decoded;
+            next();
+        });
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+    }
 };
 
 module.exports = auth;

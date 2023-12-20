@@ -4,13 +4,11 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { setUserInfo } from "../features/auth/authSlice";
 import { jwtDecode } from "jwt-decode";
-import { useSignInMutation } from '../features/auth/authApiSlice';
 import axios from 'axios';
 
 export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [signIn] = useSignInMutation();
 
     const [formDetails, setFormDetails] = useState({
         username: '',
@@ -45,10 +43,10 @@ export default function Login() {
                     error: "Sign in failed",
                 }
             );
-
-            localStorage.setItem("token", userData.token);
-            dispatch(setUserInfo(jwtDecode(userData.token)));
-            console.log(jwtDecode(userData.token));
+            console.log(jwtDecode(userData.data.token));
+            localStorage.setItem("token", userData.data.token);
+            dispatch(setUserInfo(jwtDecode(userData.data.token)));
+            console.log(jwtDecode(userData.data.token));
             return navigate("/");
         }
         catch (error) {

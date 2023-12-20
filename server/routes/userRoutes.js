@@ -14,7 +14,7 @@ userRouter.get("/profile/:query", getUserProfile);
 userRouter.get("/suggested", auth, getSuggestedUsers);
 userRouter.post("/signup", signupUser);
 userRouter.post("/login", loginUser);
-userRouter.post("/follow/:id", auth, followUnFollowUser); // Toggle state(follow/unfollow)
+userRouter.post("/follow/:id", auth, followUnFollowUser);
 userRouter.put("/update/:id", auth, updateUser);
 
 module.exports = userRouter;
