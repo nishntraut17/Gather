@@ -40,7 +40,7 @@ const PostPage = () => {
             }
         };
         getPost();
-    }, []);
+    }, [pid]);
 
     const handleDeletePost = async () => {
         try {

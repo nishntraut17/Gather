@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import { useDispatch } from 'react-redux';
 import { jwtDecode } from "jwt-decode";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
                 )
               }
             />
+            <Route path='/chat' element={token ? <ChatPage /> : <Navigate to={"/auth"} />} />
             <Route path='/:username/post/:pid' element={<PostPage />} />
           </Route>
           <Route path='/auth/signup' element={<Signup />} />

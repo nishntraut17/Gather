@@ -9,6 +9,7 @@ import { mode } from "@chakra-ui/theme-tools";
 import { extendTheme } from "@chakra-ui/theme-utils";
 import { ColorModeScript } from "@chakra-ui/color-mode";
 import { BrowserRouter } from 'react-router-dom';
+import { SocketContextProvider } from './context/SocketContext';
 
 const styles = {
   global: (props) => ({
@@ -39,9 +40,11 @@ root.render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <BrowserRouter>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <SocketContextProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </SocketContextProvider>
       </BrowserRouter>
     </ChakraProvider>
   </Provider>

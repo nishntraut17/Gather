@@ -38,7 +38,6 @@ const CreatePost = () => {
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]);
     const { username } = useParams();
-    const token = localStorage.getItem("token");
 
     const handleTextChange = (e) => {
         const inputText = e.target.value;

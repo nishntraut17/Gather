@@ -4,9 +4,10 @@ require("dotenv").config()
 require("./db/connectDB");
 const userRouter = require("./routes/userRoutes");
 const postRouter = require("./routes/postRoutes");
+const messageRouter = require("./routes/messageRoutes");
 const { v2 } = require("cloudinary");
+const { app, server } = require("./socket/socket.js");
 
-const app = express();
 app.use(cors({
     origin: ['http://localhost:3000'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -25,4 +26,5 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
-app.listen(PORT, () => console.log("Server connected"));
+app.use("/api/messages", messageRouter);
+server.listen(PORT, () => console.log("Server connected"));
