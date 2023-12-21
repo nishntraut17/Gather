@@ -1,6 +1,7 @@
 import { Avatar, Divider, Flex, Text } from "@chakra-ui/react";
+import { useState } from "react";
 
-const Comment = ({ reply, lastReply }) => {
+const Comment = ({ reply, lastReply, currentPost }) => {
     return (
         <>
             <Flex gap={4} py={2} my={2} w={"full"}>

@@ -15,7 +15,6 @@ const Post = ({ post, postedBy }) => {
     const currentUser = useSelector(selectCurrentUser);
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
 
     useEffect(() => {
         const getUser = async () => {
@@ -38,7 +37,7 @@ const Post = ({ post, postedBy }) => {
         };
 
         getUser();
-    }, [postedBy, token]);
+    }, [postedBy]);
 
     const handleDeletePost = async (e) => {
         try {

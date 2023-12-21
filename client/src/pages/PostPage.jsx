@@ -17,7 +17,6 @@ const PostPage = () => {
     const { pid } = useParams();
     const currentUser = useSelector(selectCurrentUser);
     const navigate = useNavigate();
-    const token = localStorage.getItem("token")
 
     const currentPost = posts[0];
 
@@ -41,7 +40,7 @@ const PostPage = () => {
             }
         };
         getPost();
-    }, [pid, setPosts, token]);
+    }, []);
 
     const handleDeletePost = async () => {
         try {

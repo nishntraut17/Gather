@@ -7,7 +7,6 @@ import SuggestedUsers from "../components/SuggestedUsers";
 const Home = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const token = localStorage.getItem("token")
     useEffect(() => {
         const getFeedPosts = async () => {
             setLoading(true);
@@ -32,7 +31,7 @@ const Home = () => {
             }
         };
         getFeedPosts();
-    }, [setPosts, token]);
+    }, [setPosts]);
 
     return (
         <Flex gap='10' alignItems={"flex-start"}>

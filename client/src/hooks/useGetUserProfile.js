@@ -6,7 +6,6 @@ const useGetUserProfile = () => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const { username } = useParams();
-	const token = localStorage.getItem("token");
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -33,7 +32,7 @@ const useGetUserProfile = () => {
 			}
 		};
 		getUser();
-	}, [username, setUser, token]);
+	}, [username, setUser]);
 
 	return { loading, user };
 };

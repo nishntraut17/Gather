@@ -15,6 +15,7 @@ import {
     useDisclosure,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { FaRegComment } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from "../features/auth/authSlice";
 import toast from 'react-hot-toast';
@@ -24,6 +25,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 const Actions = ({ post }) => {
     const user = useSelector(selectCurrentUser);
     const [liked, setLiked] = useState(post.likes.includes(user?._id));
+    const [likeCount, setLikeCount] = useState(post.likes.length);
+    const [repliesCount, setRepliesCount] = useState(post.replies.length);
     const [posts, setPosts] = useState([]);
     const [isLiking, setIsLiking] = useState(false);
     const [isReplying, setIsReplying] = useState(false);
@@ -56,6 +59,8 @@ const Actions = ({ post }) => {
                     return p;
                 });
                 setPosts(updatedPosts);
+                setLikeCount(prev => prev + 1);
+                toast.success("Post Liked Successfully");
             } else {
                 // remove the id of the current user from post.likes array
                 const updatedPosts = posts.map((p) => {
@@ -65,6 +70,8 @@ const Actions = ({ post }) => {
                     return p;
                 });
                 setPosts(updatedPosts);
+                setLikeCount(prev => prev - 1);
+                toast.success("Post Disliked Successfully");
             }
 
             setLiked(prevLiked => !prevLiked);
@@ -98,6 +105,7 @@ const Actions = ({ post }) => {
                 return p;
             });
             setPosts(updatedPosts);
+            setRepliesCount(prev => prev + 1);
             toast.success("Reply posted successfully");
             onClose();
             setReply("");
@@ -112,35 +120,16 @@ const Actions = ({ post }) => {
         <Flex flexDirection='column'>
             <Flex gap={3} my={2} onClick={(e) => e.preventDefault()}>
                 {liked ? <FavoriteIcon onClick={handleLikeAndUnlike} /> : <FavoriteBorderIcon onClick={handleLikeAndUnlike} />}
-
-                <svg
-                    aria-label='Comment'
-                    color=''
-                    fill=''
-                    height='20'
-                    role='img'
-                    viewBox='0 0 24 24'
-                    width='20'
-                    onClick={onOpen}
-                >
-                    <title>Comment</title>
-                    <path
-                        d='M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z'
-                        fill='none'
-                        stroke='currentColor'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                    ></path>
-                </svg>
+                <FaRegComment onClick={onOpen} size={22} />
             </Flex>
 
             <Flex gap={2} alignItems={"center"}>
                 <Text color={"gray.light"} fontSize='sm'>
-                    {post.replies.length} replies
+                    {repliesCount} replies
                 </Text>
                 <Box w={0.5} h={0.5} borderRadius={"full"} bg={"gray.light"}></Box>
                 <Text color={"gray.light"} fontSize='sm'>
-                    {post.likes.length} likes
+                    {likeCount} likes
                 </Text>
             </Flex>
 
