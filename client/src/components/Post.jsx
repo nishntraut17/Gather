@@ -8,12 +8,13 @@ import toast from 'react-hot-toast';
 import { formatDistanceToNow } from "date-fns";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { selectCurrentUser } from '../features/auth/authSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deletePost } from "../features/post/postSlice";
 
 const Post = ({ post, postedBy }) => {
     const [user, setUser] = useState([]);
+    const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
-    const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,12 +27,12 @@ const Post = ({ post, postedBy }) => {
                 });
                 const data = await res.json();
                 if (data.error) {
-                    toast.error("Error", data.error, "error");
+                    toast.error(data.error);
                     return;
                 }
                 setUser(data);
             } catch (error) {
-                toast.error("Error", error.message, "error");
+                toast.error(error.message);
                 setUser(null);
             }
         };
@@ -52,13 +53,13 @@ const Post = ({ post, postedBy }) => {
             });
             const data = await res.json();
             if (data.error) {
-                toast.error("Error", data.error, "error");
+                toast.error(data.error);
                 return;
             }
-            toast.success("Success", "Post deleted", "success");
-            setPosts(posts.filter((p) => p._id !== post._id));
+            dispatch(deletePost(post._id));
+            toast.success("Post deleted");
         } catch (error) {
-            toast.success("Error", error.message, "error");
+            toast.success(error.message);
         }
     };
 

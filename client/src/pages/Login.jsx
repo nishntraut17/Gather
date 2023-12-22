@@ -33,7 +33,7 @@ export default function Login() {
             }
 
             const userData = await toast.promise(
-                axios.post("http://localhost:5000/api/users/login", {
+                axios.post(`http://localhost:5000/api/users/login`, {
                     username,
                     password
                 }),

@@ -5,11 +5,14 @@ import { Flex, Spinner } from "@chakra-ui/react";
 import Post from "../components/Post";
 import useGetUserProfile from "../hooks/useGetUserProfile";
 import toast from 'react-hot-toast';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCurrentPosts, setPosts } from "../features/post/postSlice";
 
 const UserPage = () => {
     const { user, loading } = useGetUserProfile();
+    const dispatch = useDispatch();
     const { username } = useParams();
-    const [posts, setPosts] = useState([]);
+    const posts = useSelector(selectCurrentPosts);
     const [fetchingPosts, setFetchingPosts] = useState(true);
 
     useEffect(() => {
@@ -20,17 +23,17 @@ const UserPage = () => {
                 const res = await fetch(`http://localhost:5000/api/posts/user/${username}`, { method: "GET", headers: { "authorization": `Bearer ${localStorage.getItem("token")}` } });
                 const data = await res.json();
                 console.log(data);
-                setPosts(data);
+                dispatch(setPosts(data));
             } catch (error) {
-                toast.error("Error", error.message, "error");
-                setPosts([]);
+                toast.error(error.message);
+                dispatch(setPosts([]));
             } finally {
                 setFetchingPosts(false);
             }
         };
 
         getPosts();
-    }, [username, setPosts, user]);
+    }, [username, user, dispatch]);
 
     if (!user && loading) {
         return (

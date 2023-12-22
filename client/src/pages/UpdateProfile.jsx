@@ -43,22 +43,23 @@ export default function UpdateProfilePage() {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    "authorization": `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify({ ...inputs, profilePic: imgUrl }),
             });
             const data = await res.json(); // updated user object
             if (data.error) {
-                toast.error("Error", data.error, "error");
+                toast.error(data.error);
                 return;
             }
-            toast.success("Success", "Profile updated successfully", "success");
+            toast.success("Profile updated successfully");
             dispatch(setUserInfo(data));
             localStorage.setItem("user-threads", JSON.stringify(data));
         } catch (error) {
-            toast.error("Error", error, "error");
+            toast.error(error);
         } finally {
             setUpdating(false);
-            navigate('/:username');
+            navigate(`/${user.username}`);
         }
     };
     return (

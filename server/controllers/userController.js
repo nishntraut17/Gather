@@ -113,6 +113,22 @@ const followUnFollowUser = async (req, res) => {
 	}
 };
 
+const searchedUsers = async (req, res) => {
+	try {
+		const { text } = req.params;
+		const users = await User.find({
+			$or: [
+				{ "name": { $regex: new RegExp("^" + text, "i") } },
+				{ "username": { $regex: new RegExp("^" + text, "i") } },
+				{ "email": { $regex: new RegExp("^" + text, "i") } }
+			]
+		});
+		res.status(200).json(users);
+	} catch (error) {
+		res.json(error);
+	}
+}
+
 const updateUser = async (req, res) => {
 	const { name, email, username, password, bio } = req.body;
 	let { profilePic } = req.body;
@@ -177,16 +193,7 @@ const getSuggestedUsers = async (req, res) => {
 
 		const usersFollowedByYou = await User.findById(userId).select("following");
 
-		const users = await User.aggregate([
-			{
-				$match: {
-					_id: { $ne: userId },
-				},
-			},
-			{
-				$sample: { size: 10 },
-			},
-		]);
+		const users = await User.find({ _id: { $ne: userId } });
 		const filteredUsers = users.filter((user) => !usersFollowedByYou.following.includes(user._id));
 		const suggestedUsers = filteredUsers.slice(0, 4);
 
@@ -206,4 +213,5 @@ module.exports = {
 	updateUser,
 	getUserProfile,
 	getSuggestedUsers,
+	searchedUsers,
 };

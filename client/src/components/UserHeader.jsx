@@ -36,9 +36,6 @@ const UserHeader = ({ user }) => {
                     </Text>
                     <Flex gap={2} alignItems={"center"}>
                         <Text fontSize={"sm"}>{user.username}</Text>
-                        <Text fontSize={"xs"} bg={"gray.dark"} color={"gray.light"} p={1} borderRadius={"full"}>
-                            threads.net
-                        </Text>
                     </Flex>
                 </Box>
                 <Box>
@@ -78,8 +75,13 @@ const UserHeader = ({ user }) => {
                 </Button>
             )}
             <Flex w={"full"} justifyContent={"space-between"}>
-                <Flex gap={2} alignItems={"center"}>
-                    <Text color={"gray.light"}>{user.followers.length} followers</Text>
+                <Flex gap={4}>
+                    <Flex gap={2} alignItems={"center"}>
+                        <Text color={"gray.light"}>{user.followers.length} followers</Text>
+                    </Flex>
+                    <Flex gap={2} alignItems={"center"}>
+                        <Text color={"gray.light"}>{user.following.length} followings</Text>
+                    </Flex>
                 </Flex>
                 <Flex>
                     <Box className='icon-container'>

@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import toast from 'react-hot-toast'
 import Post from "../components/Post";
 import SuggestedUsers from "../components/SuggestedUsers";
+import CreatePostOnHome from "../components/CreatePostOnHome";
+import { setPosts, selectCurrentPosts } from "../features/post/postSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
-    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const posts = useSelector(selectCurrentPosts);
+    const dispatch = useDispatch();
     useEffect(() => {
         const getFeedPosts = async () => {
             setLoading(true);
-            setPosts([]);
             try {
                 const res = await fetch("http://localhost:5000/api/posts/feed", {
                     headers: {
@@ -19,23 +22,28 @@ const Home = () => {
                 });
                 const data = await res.json();
                 if (data.error) {
-                    toast.error("Error", data.error, "error");
+                    toast.error(data.error);
                     return;
                 }
                 console.log(data);
-                setPosts(data);
+                const sortedData = data.sort(function (a, b) {
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                });
+                console.log(sortedData);
+                dispatch(setPosts(sortedData));
             } catch (error) {
-                toast.error("Error", error.message, "error");
+                toast.error(error.message);
             } finally {
                 setLoading(false);
             }
         };
         getFeedPosts();
-    }, [setPosts]);
+    }, [dispatch]);
 
     return (
         <Flex gap='10' alignItems={"flex-start"}>
             <Box flex={70}>
+                <CreatePostOnHome />
                 {!loading && posts.length === 0 && <h1>Follow some users to see the feed</h1>}
 
                 {loading && (

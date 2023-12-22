@@ -17,7 +17,7 @@ const useGetUserProfile = () => {
 				});
 				const data = await res.json();
 				if (data.error) {
-					toast.error("Error", data.error, "error");
+					toast.error(data.error);
 					return;
 				}
 				if (data.isFrozen) {
@@ -26,7 +26,7 @@ const useGetUserProfile = () => {
 				}
 				setUser(data);
 			} catch (error) {
-				toast.error("Error", error.message, "error");
+				toast.error(error.message);
 			} finally {
 				setLoading(false);
 			}

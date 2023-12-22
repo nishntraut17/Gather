@@ -31,12 +31,12 @@ const PostPage = () => {
                 });
                 const data = await res.json();
                 if (data.error) {
-                    toast.error("Error", data.error, "error");
+                    toast.error(data.error);
                     return;
                 }
                 setPosts([data]);
             } catch (error) {
-                toast.error("Error", error.message, "error");
+                toast.error(error.message);
             }
         };
         getPost();
@@ -54,13 +54,13 @@ const PostPage = () => {
             });
             const data = await res.json();
             if (data.error) {
-                toast.error("Error", data.error, "error");
+                toast.error(data.error);
                 return;
             }
-            toast.success("Success", "Post deleted", "success");
+            toast.success("Post deleted");
             navigate(`/${user.username}`);
         } catch (error) {
-            toast.error("Error", error.message, "error");
+            toast.error(error.message);
         }
     };
 

@@ -11,7 +11,7 @@ const useFollowUnfollow = (user) => {
 
     const handleFollowUnfollow = async () => {
         if (!token) {
-            toast.error("Error", "Please login to follow", "error");
+            toast.error("Please login to follow");
             return;
         }
         if (updating) return;
@@ -32,17 +32,17 @@ const useFollowUnfollow = (user) => {
             }
 
             if (following) {
-                toast.success("Success", `Unfollowed ${user.name}`, "success");
+                toast.success(`Unfollowed ${user.name}`);
                 user.followers.pop(); // simulate removing from followers
             } else {
-                toast.success("Success", `Followed ${user.name}`, "success");
+                toast.success(`Followed ${user.name}`);
                 user.followers.push(currentUser?._id); // simulate adding to followers
             }
             setFollowing(!following);
 
             console.log(data);
         } catch (error) {
-            toast.error("Error", error, "error");
+            toast.error(error);
         } finally {
             setUpdating(false);
         }

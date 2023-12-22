@@ -36,7 +36,7 @@ const Actions = ({ post }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleLikeAndUnlike = async () => {
-        if (!token) return toast.error("Error", "You must be logged in to like a post", "error");
+        if (!token) return toast.error("You must be logged in to like a post");
         if (isLiking) return;
         setIsLiking(true);
         try {
@@ -48,7 +48,7 @@ const Actions = ({ post }) => {
                 },
             });
             const data = await res.json();
-            if (data.error) return toast.error("Error", data.error, "error");
+            if (data.error) return toast.error(data.error);
 
             if (!liked) {
                 // add the id of the current user to post.likes array
@@ -76,7 +76,7 @@ const Actions = ({ post }) => {
 
             setLiked(prevLiked => !prevLiked);
         } catch (error) {
-            toast.error("Error", error.message, "error");
+            toast.error(error.message);
         } finally {
             setIsLiking(false);
         }
@@ -110,7 +110,7 @@ const Actions = ({ post }) => {
             onClose();
             setReply("");
         } catch (error) {
-            toast.error("Error", error.message, "error");
+            toast.error(error.message);
         } finally {
             setIsReplying(false);
         }

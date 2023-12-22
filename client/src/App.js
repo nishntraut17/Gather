@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import { useDispatch } from 'react-redux';
 import { jwtDecode } from "jwt-decode";
 import ChatPage from "./pages/ChatPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
             />
             <Route path='/chat' element={token ? <ChatPage /> : <Navigate to={"/auth"} />} />
             <Route path='/:username/post/:pid' element={<PostPage />} />
+            <Route path='/search' element={<SearchPage />} />
           </Route>
           <Route path='/auth/signup' element={<Signup />} />
           <Route path='/auth/login' element={!token ? <Login /> : <Navigate to='/' />} />

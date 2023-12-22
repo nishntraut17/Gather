@@ -19,8 +19,6 @@ const ChatPage = () => {
 	const selectedConversation = useSelector((state) => state.conversation.selectedConversation);
 
 	const currentUser = useSelector(selectCurrentUser);
-
-
 	const { socket, onlineUsers } = useSocket();
 
 	useEffect(() => {
