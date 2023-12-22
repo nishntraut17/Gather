@@ -20,7 +20,7 @@ const Post = ({ post, postedBy }) => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/users/profile/${postedBy}`, {
+                const res = await fetch(`https://gather-backend.onrender.com/api/users/profile/${postedBy}`, {
                     headers: {
                         "authorization": `Bearer ${localStorage.getItem("token")}`
                     }
@@ -45,7 +45,7 @@ const Post = ({ post, postedBy }) => {
             e.preventDefault();
             if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-            const res = await fetch(`http://localhost:5000/api/posts/${post._id}`, {
+            const res = await fetch(`https://gather-backend.onrender.com/api/posts/${post._id}`, {
                 method: "DELETE",
                 headers: {
                     "authorization": `Bearer ${localStorage.getItem("token")}`

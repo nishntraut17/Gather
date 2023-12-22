@@ -55,7 +55,7 @@ const CreatePost = () => {
     const handleCreatePost = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:5000/api/posts/create", {
+            const res = await fetch("https://gather-backend.onrender.com/api/posts/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

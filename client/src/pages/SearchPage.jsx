@@ -15,7 +15,7 @@ const SearchPage = () => {
         e.preventDefault();
         try {
             console.log(text);
-            const res = await fetch(`http://localhost:5000/api/users/search/${text}`, {
+            const res = await fetch(`https://gather-backend.onrender.com/api/users/search/${text}`, {
                 headers: {
                     "authorization": `Bearer ${localStorage.getItem("token")}`
                 }

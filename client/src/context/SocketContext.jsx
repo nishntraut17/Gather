@@ -15,7 +15,7 @@ export const SocketContextProvider = ({ children }) => {
 	const user = useSelector(selectCurrentUser);
 
 	useEffect(() => {
-		const socket = io("http://localhost:5000", {
+		const socket = io("https://gather-backend.onrender.com", {
 			query: {
 				userId: user?._id,
 			},

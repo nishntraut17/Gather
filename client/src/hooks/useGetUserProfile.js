@@ -10,7 +10,7 @@ const useGetUserProfile = () => {
 	useEffect(() => {
 		const getUser = async () => {
 			try {
-				const res = await fetch(`http://localhost:5000/api/users/profile/${username}`, {
+				const res = await fetch(`https://gather-backend.onrender.com/api/users/profile/${username}`, {
 					headers: {
 						"authorization": `Bearer ${localStorage.getItem("token")}`
 					}

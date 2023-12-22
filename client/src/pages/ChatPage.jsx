@@ -30,7 +30,7 @@ const ChatPage = () => {
 	useEffect(() => {
 		const getConversations = async () => {
 			try {
-				const res = await fetch("http://localhost:5000/api/messages/conversations", {
+				const res = await fetch("https://gather-backend.onrender.com/api/messages/conversations", {
 					headers: {
 						"authorization": `Bearer ${localStorage.getItem("token")}`
 					}
@@ -55,7 +55,7 @@ const ChatPage = () => {
 		e.preventDefault();
 		setSearchingUser(true);
 		try {
-			const res = await fetch(`http://localhost:5000/api/users/profile/${searchText}`, {
+			const res = await fetch(`https://gather-backend.onrender.com/api/users/profile/${searchText}`, {
 				headers: {
 					"authorization": `Bearer ${localStorage.getItem("token")}`
 				}

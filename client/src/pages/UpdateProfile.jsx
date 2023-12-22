@@ -39,7 +39,7 @@ export default function UpdateProfilePage() {
         if (updating) return;
         setUpdating(true);
         try {
-            const res = await fetch(`http://localhost:5000/api/users/update/${user._id}`, {
+            const res = await fetch(`https://gather-backend.onrender.com/api/users/update/${user._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

@@ -20,7 +20,7 @@ const UserPage = () => {
             if (!user) return;
             setFetchingPosts(true);
             try {
-                const res = await fetch(`http://localhost:5000/api/posts/user/${username}`, { method: "GET", headers: { "authorization": `Bearer ${localStorage.getItem("token")}` } });
+                const res = await fetch(`https://gather-backend.onrender.com/api/posts/user/${username}`, { method: "GET", headers: { "authorization": `Bearer ${localStorage.getItem("token")}` } });
                 const data = await res.json();
                 console.log(data);
                 dispatch(setPosts(data));
