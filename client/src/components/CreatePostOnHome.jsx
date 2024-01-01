@@ -76,7 +76,7 @@ const CreatePostOnHome = () => {
     return (
         <div>
 
-            <div className="flex flex-col p-4 border-gray-400 border-2 rounded">
+            <div className="flex flex-col p-4 bg-gray-100 border-slate-200 border-2 rounded">
                 <div>
                     <FormControl>
                         <Textarea
@@ -95,7 +95,7 @@ const CreatePostOnHome = () => {
                             size={16}
                             onClick={() => imageRef.current.click()}
                         />
-                    </FormControl>
+                    </FormControl >
 
                     {imgUrl && (
                         <Flex mt={5} w={"full"} position={"relative"}>
@@ -111,15 +111,15 @@ const CreatePostOnHome = () => {
                             />
                         </Flex>
                     )}
-                </div>
+                </div >
 
                 <div className="flex justify-end">
                     <Button colorScheme='blue' mr={3} onClick={handleCreatePost} isLoading={loading}>
                         Post
                     </Button>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
