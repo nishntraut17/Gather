@@ -103,7 +103,7 @@ const UserHeader = ({ user }) => {
 
             <Flex w={"full"}>
                 <Flex flex={1} borderBottom={"1.5px solid gray"} justifyContent={"center"} pb='3' cursor={"pointer"}>
-                    <Text fontWeight={"bold"}> Threads</Text>
+                    <Text fontWeight={"bold"}> Posts</Text>
                 </Flex>
             </Flex>
         </VStack>

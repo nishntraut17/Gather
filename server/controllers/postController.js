@@ -1,5 +1,6 @@
 const Post = require("../models/postModel");
 const User = require("../models/userModel");
+const Repost = require("../models/repostModel");
 const { v2 } = require("cloudinary");
 
 const createPost = async (req, res) => {
