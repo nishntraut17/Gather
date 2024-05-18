@@ -9,7 +9,7 @@ const { v2 } = require("cloudinary");
 const { app, server } = require("./socket/socket.js");
 
 app.use(cors({
-    origin: ['https://gather-together.netlify.app', 'http://localhost:3000', 'https://gather-nishntraut17.vercel.app'],
+    origin: [process.env.FRONT_END_URL],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
