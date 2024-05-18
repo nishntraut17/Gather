@@ -35,7 +35,7 @@ export default function Signup() {
             }
 
             await toast.promise(
-                axios.post("https://gather-backend.onrender.com/api/users/signup", {
+                axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/signup`, {
                     name, email, password, username
                 }),
                 {

@@ -1,5 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Input, Skeleton, SkeletonCircle, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Skeleton, SkeletonCircle, Text } from "@chakra-ui/react";
 import Conversation from "../components/Conversation";
 import { GiConversation } from "react-icons/gi";
 import MessageContainer from "../components/MessageContainer";
@@ -30,7 +30,7 @@ const ChatPage = () => {
 	useEffect(() => {
 		const getConversations = async () => {
 			try {
-				const res = await fetch("https://gather-backend.onrender.com/api/messages/conversations", {
+				const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/messages/conversations`, {
 					headers: {
 						"authorization": `Bearer ${localStorage.getItem("token")}`
 					}
@@ -55,7 +55,7 @@ const ChatPage = () => {
 		e.preventDefault();
 		setSearchingUser(true);
 		try {
-			const res = await fetch(`https://gather-backend.onrender.com/api/users/profile/${searchText}`, {
+			const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/profile/${searchText}`, {
 				headers: {
 					"authorization": `Bearer ${localStorage.getItem("token")}`
 				}
@@ -127,7 +127,7 @@ const ChatPage = () => {
 				mx={"auto"}
 			>
 				<Flex flex={30} gap={2} flexDirection={"column"} maxW={{ sm: "250px", md: "full" }} mx={"auto"}>
-					<Text fontWeight={700} color={useColorModeValue("gray.600", "gray.400")}>
+					<Text fontWeight={700} color={"gray.600"}>
 						Your Conversations
 					</Text>
 					<form onSubmit={handleConversationSearch}>

@@ -15,7 +15,6 @@ import {
     ModalOverlay,
     Text,
     Textarea,
-    useColorModeValue,
     useDisclosure,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
@@ -55,7 +54,7 @@ const CreatePost = () => {
     const handleCreatePost = async () => {
         setLoading(true);
         try {
-            const res = await fetch("https://gather-backend.onrender.com/api/posts/create", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -89,7 +88,7 @@ const CreatePost = () => {
                 position={"fixed"}
                 bottom={10}
                 right={5}
-                bg={useColorModeValue("gray.300", "gray.dark")}
+                bg={"gray.300"}
                 onClick={onOpen}
                 size={{ base: "sm", sm: "md" }}
             >

@@ -24,7 +24,7 @@ const PostPage = () => {
         const getPost = async () => {
             setPosts([]);
             try {
-                const res = await fetch(`https://gather-backend.onrender.com/api/posts/${pid}`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${pid}`, {
                     headers: {
                         "authorization": `Bearer ${localStorage.getItem("token")}`
                     }
@@ -46,7 +46,7 @@ const PostPage = () => {
         try {
             if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-            const res = await fetch(`https://gather-backend.onrender.com/api/posts/${currentPost._id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${currentPost._id}`, {
                 method: "DELETE",
                 headers: {
                     "authorization": `Bearer ${localStorage.getItem("token")}`

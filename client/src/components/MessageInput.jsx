@@ -38,7 +38,7 @@ const MessageInput = ({ setMessages }) => {
         setIsSending(true);
 
         try {
-            const res = await fetch("https://gather-backend.onrender.com/api/messages", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/messages`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

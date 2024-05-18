@@ -33,7 +33,7 @@ export default function Login() {
             }
 
             const userData = await toast.promise(
-                axios.post(`https://gather-backend.onrender.com/api/users/login`, {
+                axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/login`, {
                     username,
                     password
                 }),

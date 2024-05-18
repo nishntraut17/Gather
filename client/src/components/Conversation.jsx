@@ -7,8 +7,6 @@ import {
     Stack,
     Text,
     WrapItem,
-    useColorMode,
-    useColorModeValue,
 } from "@chakra-ui/react";
 import { BsCheck2All, BsFillImageFill } from "react-icons/bs";
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,7 +20,6 @@ const Conversation = ({ conversation, isOnline }) => {
     const lastMessage = conversation.lastMessage;
 
     const selectedConversation = useSelector((state) => state.conversation.selectedConversation);
-    const colorMode = useColorMode();
 
     console.log("selectedConverstion", selectedConversation);
     return (
@@ -32,7 +29,7 @@ const Conversation = ({ conversation, isOnline }) => {
             p={"1"}
             _hover={{
                 cursor: "pointer",
-                bg: useColorModeValue("gray.600", "gray.dark"),
+                bg: "gray.600",
                 color: "white",
             }}
             onClick={() =>
@@ -45,7 +42,7 @@ const Conversation = ({ conversation, isOnline }) => {
                 }))
             }
             bg={
-                selectedConversation?._id === conversation._id ? (colorMode === "light" ? "gray.400" : "gray.dark") : ""
+                selectedConversation?._id === conversation._id ? "gray.400" : ""
             }
             borderRadius={"md"}
         >

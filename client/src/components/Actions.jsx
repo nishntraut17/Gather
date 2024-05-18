@@ -40,7 +40,7 @@ const Actions = ({ post }) => {
         if (isLiking) return;
         setIsLiking(true);
         try {
-            const res = await fetch(`https://gather-backend.onrender.com/api/posts/like/${post._id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/like/${post._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const Actions = ({ post }) => {
         if (isReplying) return;
         setIsReplying(true);
         try {
-            const res = await fetch(`https://gather-backend.onrender.com/api/posts/reply/${post._id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/reply/${post._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

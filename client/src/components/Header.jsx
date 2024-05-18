@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Link, useColorMode } from "@chakra-ui/react";
+import { Button, Flex, Image, Link } from "@chakra-ui/react";
 import { AiFillHome } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
 import { Link as RouterLink } from "react-router-dom";
@@ -11,13 +11,12 @@ import { selectCurrentUser } from "../features/auth/authSlice";
 import { Outlet } from 'react-router-dom';
 
 const Header = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
     const token = localStorage.getItem('token');
     const user = useSelector(selectCurrentUser);
     const logout = useLogout();
 
     return (
-        <div>
+        <div className="">
             <Flex justifyContent={"space-between"} mt={6} mb='12'>
                 {token && (
                     <Link as={RouterLink} to='/'>
@@ -25,12 +24,12 @@ const Header = () => {
                     </Link>
                 )}
 
-                <Flex onClick={toggleColorMode} cursor={"pointer"}>
+                <Flex cursor={"pointer"}>
                     <Image
                         alt='logo'
                         w={8}
                         h={8}
-                        src={colorMode === "dark" ? "/GatherLogoWhite.png" : "/GatherFinal.png"}
+                        src={"/GatherFinal.png"}
 
                     />
                     <p className="text-sm pt-1 pl-1">Gather</p>

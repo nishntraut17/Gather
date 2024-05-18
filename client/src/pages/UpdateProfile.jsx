@@ -6,7 +6,6 @@ import {
     Heading,
     Input,
     Stack,
-    useColorModeValue,
     Avatar,
     Center,
 } from "@chakra-ui/react";
@@ -39,7 +38,7 @@ export default function UpdateProfilePage() {
         if (updating) return;
         setUpdating(true);
         try {
-            const res = await fetch(`https://gather-backend.onrender.com/api/users/update/${user._id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/update/${user._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +68,7 @@ export default function UpdateProfilePage() {
                     spacing={4}
                     w={"full"}
                     maxW={"md"}
-                    bg={useColorModeValue("white", "gray.dark")}
+                    bg={"white"}
                     rounded={"xl"}
                     boxShadow={"lg"}
                     p={6}

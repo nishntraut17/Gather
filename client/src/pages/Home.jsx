@@ -15,7 +15,7 @@ const Home = () => {
         const getFeedPosts = async () => {
             setLoading(true);
             try {
-                const res = await fetch("https://gather-backend.onrender.com/api/posts/feed", {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/feed`, {
                     headers: {
                         "authorization": `Bearer ${localStorage.getItem("token")}`
                     }

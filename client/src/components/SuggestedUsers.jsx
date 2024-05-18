@@ -11,7 +11,7 @@ const SuggestedUsers = () => {
         const getSuggestedUsers = async () => {
             setLoading(true);
             try {
-                const res = await fetch("https://gather-backend.onrender.com/api/users/suggested", {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/suggested`, {
                     headers: {
                         "authorization": `Bearer ${localStorage.getItem("token")}`
                     }

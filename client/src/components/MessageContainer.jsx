@@ -1,4 +1,4 @@
-import { Avatar, Divider, Flex, Image, Skeleton, SkeletonCircle, Text, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Divider, Flex, Image, Skeleton, SkeletonCircle, Text } from "@chakra-ui/react";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
 import { useEffect, useRef, useState } from "react";
@@ -74,7 +74,7 @@ const MessageContainer = () => {
             setMessages([]);
             try {
                 if (selectedConversation.mock) return;
-                const res = await fetch(`https://gather-backend.onrender.com/api/messages/${selectedConversation.userId}`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/messages/${selectedConversation.userId}`, {
                     headers: {
                         "authorization": `Bearer ${localStorage.getItem("token")}`
                     }
@@ -98,7 +98,7 @@ const MessageContainer = () => {
     return (
         <Flex
             flex='70'
-            bg={useColorModeValue("gray.200", "gray.dark")}
+            bg={"gray.200"}
             borderRadius={"md"}
             p={2}
             flexDirection={"column"}
