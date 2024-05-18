@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
-		origin: "https://gather-nishntraut17.vercel.app",
+		origin: process.env.FRONT_END_URL,
 		methods: ["GET", "POST"],
 	},
 });
